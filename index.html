@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Medicamentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header id="header">
+        <nav id="main-nav" class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="Logo" width="50">
+                    IOC_Medicaments_API
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#bebes">Bebés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#niños">Niños</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#todos">Todos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#search">Buscar</a>
+                        </li>
+ 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero-banner">
+        
+        <div class="banner-inner">
+            <h2>Bienvenido al Buscador de Medicamentos</h2>
+            <p>Encuentra información rápida y confiable sobre medicamentos.</p>
+        </div>
+    </section>
+
+    <section id="search" class="container mt-5">
+        <div class="section-header text-center">
+            <h2 class="section-title">Buscar Medicamento</h2>
+            <p>Ingresa el nombre de un medicamento para obtener más detalles.</p>
+        </div>
+        <div>
+            <form id="searchForm">
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Nombre del medicamento" required>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select" id="medicineType">
+                            <option value="all" selected>Todos los medicamentos</option>
+                            <option value="babies">Medicamentos para bebés</option>
+                            <option value="children">Medicamentos para niños</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            <div id="results" class="row mt-5"></div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 Buscador de Medicamentos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="medicineModal" tabindex="-1" aria-labelledby="medicineModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="medicineModalLabel">Detalles del Medicamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="medicineModalBody">
+                    <!-- El contenido se llenará dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/medicamentos.js"></script>
+</body>
+</html>
