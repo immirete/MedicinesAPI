@@ -23,19 +23,9 @@ document.getElementById('searchForm').addEventListener('submit', async (e) => {
 
     // Mostrar spinner de carga
     const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '<div class="text-center mt-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div></div>';
-
-    try {
-        const response = await fetch(`https://cima.aemps.es/cima/rest/medicamentos?nombre=${searchTerm}`);
-        const data = await response.json();
-        let results = data.resultados || [];
-
-        // Filtrar según el tipo seleccionado
-        if (medicineType !== 'all') {
-            results = results.filter(medicine => {
-                const formaFarmaceutica = medicine.formaFarmaceutica?.nombre?.toLowerCase() || '';
-                const searchText = `${medicine.nombre} ${medicine.dosis || ''}`.toLowerCase();
-
+    resultsContainer.innerHTML = '<div class="text-center "><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div></div>';
+        // Añadir delay de 0.2 segundos
+        await new Promise(resolve => setTimeout(resolve, 200));
                 // Palabras clave para bebés
                 const babyKeywords = [
                     'lactante', 'bebé', 'bebe', 'recién nacido', 'neonato',
@@ -48,15 +38,38 @@ document.getElementById('searchForm').addEventListener('submit', async (e) => {
                     'gotas', 'jarabe', 'solución oral', 'suspensión oral',
                     'polvo para suspensión', 'solucion oral', 'suspension oral'
                 ];
+                
+                // Palabras clave para niños actualizadas
+                const childrenKeywords = [
+                    'infantil', 'pediátrico', 'pediatrico', 'niños', 'junior',
+                    'pediatría', 'pediatria', 'infantiles'
+                ];
+
+                // Formas farmacéuticas pediátricas
+                const childrenForms = [
+                    'jarabe', 'solución oral', 'suspensión oral',
+                    'polvo para suspensión', 'solucion oral', 'suspension oral',
+                    'comprimido masticable', 'comprimido dispersable'
+                ];
+    try {
+        const response = await fetch(`https://cima.aemps.es/cima/rest/medicamentos?nombre=${searchTerm}`);
+        const data = await response.json();
+        let results = data.resultados || [];
+
+        // Filtrar según el tipo seleccionado
+        if (medicineType !== 'all') {
+            results = results.filter(medicine => {
+                const formaFarmaceutica = medicine.formaFarmaceutica?.nombre?.toLowerCase() || '';
+                const searchText = `${medicine.nombre} ${medicine.dosis || ''}`.toLowerCase();
+
+
 
                 if (medicineType === 'babies') {
                     return babyForms.some(form => formaFarmaceutica.includes(form)) ||
                            babyKeywords.some(keyword => searchText.includes(keyword));
                 } else if (medicineType === 'children') {
-                    return searchText.includes('infantil') ||
-                           searchText.includes('pediátrico') ||
-                           searchText.includes('pediatrico') ||
-                           searchText.includes('niños');
+                    return childrenForms.some(form => formaFarmaceutica.includes(form)) ||
+                           childrenKeywords.some(keyword => searchText.includes(keyword));
                 }
                 return false;
             });
@@ -206,8 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Objeto con las imágenes para cada categoría
     const bannerImages = {
-        'babies': 'images/4.jpg',
-        'children': 'images/2.jpg',
+        'babies': 'images/baby.jpg',
+        'children': 'images/niños.jpg',
         'all': 'images/doctor2.jpg'
     };
 

@@ -267,7 +267,7 @@ background: #FFF;
 #hero-banner {
   position: relative;
   overflow: hidden;
-  height: 400px;
+  height: 600px;
   background: url('../images/doctor2.jpg');
   background-size: cover;
   color: #fff;
@@ -305,19 +305,19 @@ background: #FFF;
 
 /* Ajustes para el flexslider */
 .flexslider {
-  height: 400px;
+  height: 600px;
   border: none !important;
   margin: 0 !important;
 }
 
 .flexslider .slides img {
-  height: 400px;
+  height: 600px;
   object-fit: cover;
   width: 100%;
 }
 
 #hero-banner.item {
-  height: 400px;
+  height: 600px;
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
@@ -344,6 +344,7 @@ color: #FFFFFF;
 #hero-banner p { 
   font-size: 22px; 
 margin-bottom:20px;
+margin-right: 20px;
 line-height:35px; 
 color: rgba(59, 136, 56, 0.85); /* Verde con transparencia */
 
